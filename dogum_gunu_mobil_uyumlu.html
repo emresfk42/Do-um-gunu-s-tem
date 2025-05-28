@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>İyi ki Doğdun Bitanem ♥️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #6a0dad;
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 50px 20px 20px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    .countdown {
+      font-size: 1.2em;
+      margin: 10px 0;
+    }
+
+    .balloon {
+      width: 50px;
+      position: absolute;
+      bottom: -100px;
+      animation: floatUp 8s infinite ease-in-out;
+    }
+
+    .balloon:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .balloon:nth-child(2) { left: 30%; animation-delay: 2s; }
+    .balloon:nth-child(3) { left: 50%; animation-delay: 4s; }
+    .balloon:nth-child(4) { left: 70%; animation-delay: 6s; }
+    .balloon:nth-child(5) { left: 90%; animation-delay: 1s; }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100vh); opacity: 0; }
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      opacity: 0.7;
+    }
+
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>İyi ki Doğdun Bitanem ♥️</h1>
+    <div class="countdown" id="countdown1"></div>
+    <div class="countdown" id="countdown2"></div>
+    <div class="countdown" id="birthdayCountdown"></div>
+  </header>
+
+  <footer>
+    Hazırlayan: Seni çok seven birisi 💘<br/>
+    © 2025
+  </footer>
+
+  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Red_balloon_icon.svg" class="balloon" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Red_balloon_icon.svg" class="balloon" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Red_balloon_icon.svg" class="balloon" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Red_balloon_icon.svg" class="balloon" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Red_balloon_icon.svg" class="balloon" />
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    setInterval(() => {
+      confetti({
+        particleCount: 70,
+        spread: 60,
+        origin: { y: 0.6 }
+      });
+    }, 2500);
+
+    const date1 = new Date("2024-09-14T00:00:00");
+    const date2 = new Date("2025-01-30T00:00:00");
+    let birthday = new Date("2025-06-10T00:00:00");
+
+    function updateCountdowns() {
+      const now = new Date();
+
+      const days1 = Math.floor((now - date1) / (1000 * 60 * 60 * 24));
+      const days2 = Math.floor((now - date2) / (1000 * 60 * 60 * 24));
+
+      const diff3 = birthday - now;
+      const days = Math.floor(diff3 / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff3 / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff3 / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff3 / 1000) % 60);
+
+      document.getElementById("countdown1").innerHTML = `Tanıştığımızdan beri <strong>${days1}</strong> gün geçti.`;
+      document.getElementById("countdown2").innerHTML = `Sevgili olduğumuzdan beri <strong>${days2}</strong> gün geçti.`;
+      document.getElementById("birthdayCountdown").innerHTML = `Doğum gününe: <strong>${days}</strong> gün, <strong>${hours}</strong>s <strong>${minutes}</strong>d <strong>${seconds}</strong>s kaldı.`;
+    }
+
+    setInterval(updateCountdowns, 1000);
+    updateCountdowns();
+  </script>
+</body>
+</html>
